@@ -23,13 +23,24 @@ function HomePage(props) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps (contex) {
+  const req = contex.req;
+  const res = contex.res;
+
   return {
     props: {
       meetups: DUMMY_MEETUPS,
-    },
-    revalidate: 10,
+    }
   };
 }
+
+// export async function getStaticProps() {
+//   return {
+//     props: {
+//       meetups: DUMMY_MEETUPS,
+//     },
+//     revalidate: 10,
+//   };
+// }
 
 export default HomePage;
