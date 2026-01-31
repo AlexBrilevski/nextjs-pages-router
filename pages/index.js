@@ -23,7 +23,7 @@ function HomePage(props) {
   );
 }
 
-export async function getServerSideProps (contex) {
+export async function getServerSideProps(contex) {
   const req = contex.req;
   const res = contex.res;
 
