@@ -1,21 +1,6 @@
-import MeetupList from '../components/meetups/MeetupList';
+import sql from 'better-sqlite3';
 
-const DUMMY_MEETUPS = [
-  {
-    url: 'm1',
-    title: 'The First meetup',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg',
-    address: 'Some address 5, 12345 Some City',
-    description: 'This is the first meetup!'
-  },
-  {
-    url: 'm2',
-    title: 'The Second meetup',
-    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Stadtbild_M%C3%BCnchen.jpg/1280px-Stadtbild_M%C3%BCnchen.jpg',
-    address: 'Some address 5, 12345 Some City',
-    description: 'This is the second meetup!'
-  },
-];
+import MeetupList from '../components/meetups/MeetupList';
 
 function HomePage(props) {
   return (
@@ -27,9 +12,14 @@ export async function getServerSideProps(contex) {
   const req = contex.req;
   const res = contex.res;
 
+  const db = sql('meetups.db');
+  const meetups =  db.prepare('SELECT * FROM meetups').all();
+
+  console.log(meetups);
+
   return {
     props: {
-      meetups: DUMMY_MEETUPS,
+      meetups,
     }
   };
 }
