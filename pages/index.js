@@ -1,10 +1,20 @@
 import sql from 'better-sqlite3';
 
+import Head from 'next/head';
 import MeetupList from '../components/meetups/MeetupList';
 
 function HomePage(props) {
   return (
-    <MeetupList meetups={props.meetups} />
+    <>
+      <Head>
+        <title>React meetups</title>
+        <meta
+          name='description'
+          content='Browse a huge list of highly active React meetups!'
+        />
+      </Head>
+      <MeetupList meetups={props.meetups} />
+    </>
   );
 }
 
@@ -13,7 +23,7 @@ export async function getServerSideProps(contex) {
   const res = contex.res;
 
   const db = sql('meetups.db');
-  const meetups =  db.prepare('SELECT * FROM meetups').all();
+  const meetups = db.prepare('SELECT * FROM meetups').all();
 
   return {
     props: {

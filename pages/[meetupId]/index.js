@@ -1,10 +1,20 @@
 import sql from 'better-sqlite3';
 
+import Head from 'next/head';
 import MeetupDetails from "../../components/meetups/MeetupDetail";
 
 function MeetupDetailsPage(props) {
   return (
-    <MeetupDetails {...props.meetupData} />
+    <>
+      <Head>
+        <title>{props.meetupData.title}</title>
+        <meta
+          name='description'
+          content={props.meetupData.description}
+        />
+      </Head>
+      <MeetupDetails {...props.meetupData} />
+    </>
   );
 }
 
