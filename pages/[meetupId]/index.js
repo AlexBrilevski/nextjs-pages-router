@@ -24,8 +24,6 @@ export async function getStaticProps(context) {
   const db = sql('meetups.db');
   const meetupData = db.prepare('SELECT * FROM meetups WHERE url = ?').get(meetupId);
 
-  console.log(meetupData);
-
   return {
     props: {
       meetupData,

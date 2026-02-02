@@ -15,8 +15,6 @@ export async function getServerSideProps(contex) {
   const db = sql('meetups.db');
   const meetups =  db.prepare('SELECT * FROM meetups').all();
 
-  console.log(meetups);
-
   return {
     props: {
       meetups,
