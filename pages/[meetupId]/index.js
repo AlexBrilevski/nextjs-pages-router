@@ -23,7 +23,7 @@ export async function getStaticPaths() {
   const meetups = db.prepare('SELECT * FROM meetups').all();
 
   return {
-    fallback: false,
+    fallback: 'blocking',
     paths: meetups.map(meetup => ({ params: { meetupId: meetup.url } })),
   }
 }
